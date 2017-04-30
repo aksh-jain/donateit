@@ -1,0 +1,1 @@
+INSERT INTO DN_DONOR_DTL (DONOR_ID, DONOR_NAME, EMAIL, MOBILE_NO, ADDR_LINE_1, ADDR_LINE_2, ADDR_LINE_3) VALUES (1, 'Akshay Jain', 'akshayjn1992@gmail.com', 9822770955, 'Opp. Goyal Flour Mill', 'Mahaveer Ward', 'Seoni');
