@@ -1,13 +1,15 @@
 package com.techmavericks.donateit.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /***
@@ -15,8 +17,10 @@ import javax.persistence.Table;
  * 
  * @author Akshay Jain
  **/
-
-@Entity
+@NamedQueries({@NamedQuery( name="donorDetails.checkGoogleUser", query="SELECT dd.donorId FROM donorDetails dd WHERE dd.emailId = :emailId"), 
+		@NamedQuery(name = "donorDetails.checkGuestUser", query = "SELECT dd.donorId FROM donorDetails dd WHERE dd.mobileNo = :mobileNo"),
+		@NamedQuery(name = "donorDetails.fetchUserDetails", query = "SELECT dd FROM donorDetails dd WHERE dd.donorId = :donorId")})
+@Entity(name = "donorDetails")
 @Table(name = "DN_DONOR_DTL")
 public class DonorDetailsEntity implements Serializable {
 
@@ -28,10 +32,25 @@ public class DonorDetailsEntity implements Serializable {
 	private Long donorId;
 
 	@Column(name = "DONOR_NAME", nullable = false, length = 50)
-	private String donorName;
-
-	@Embedded
-	private AddressEntity donorAddress;
+	private String name;
+	
+	@Column(name = "DONOR_EMAIL", unique = true, length = 50)
+	private String emailId;
+	
+	@Column(name = "DONOR_MOBILE_NO", unique = true, length = 50)
+	private Long mobileNo;
+	
+	@Column(name = "Gender", length = 1)
+	private String gender;
+	
+	@Column(name = "DONOR_DOB")
+	private LocalDate dateOfBirth;
+	
+	@Column(name = "DONOR_PHOTO_URL")
+	private String photoUrl;
+	
+	@Column(name = "DONOR_TYPE")
+	private String loginType;
 
 	/**
 	 * @return the donorId
@@ -41,76 +60,108 @@ public class DonorDetailsEntity implements Serializable {
 	}
 
 	/**
-	 * @param donorId
-	 *            the donorId to set
+	 * @param donorId the donorId to set
 	 */
 	public void setDonorId(Long donorId) {
 		this.donorId = donorId;
 	}
 
 	/**
-	 * @return the donorName
+	 * @return the name
 	 */
-	public String getDonorName() {
-		return donorName;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param donorName
-	 *            the donorName to set
+	 * @param name the name to set
 	 */
-	public void setDonorName(String donorName) {
-		this.donorName = donorName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * @return the donorAddress
+	 * @return the emailId
 	 */
-	public AddressEntity getDonorAddress() {
-		return donorAddress;
+	public String getEmailId() {
+		return emailId;
 	}
 
 	/**
-	 * @param donorAddress
-	 *            the donorAddress to set
+	 * @param emailId the emailId to set
 	 */
-	public void setDonorAddress(AddressEntity donorAddress) {
-		this.donorAddress = donorAddress;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * @return the mobileNo
 	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((donorId == null) ? 0 : donorId.hashCode());
-		return result;
+	public Long getMobileNo() {
+		return mobileNo;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * @param mobileNo the mobileNo to set
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DonorDetailsEntity other = (DonorDetailsEntity) obj;
-		if (donorId == null) {
-			if (other.donorId != null)
-				return false;
-		} else if (!donorId.equals(other.donorId))
-			return false;
-		return true;
+	public void setMobileNo(Long mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the dateOfBirth
+	 */
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	/**
+	 * @param dateOfBirth the dateOfBirth to set
+	 */
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	/**
+	 * @return the photoUrl
+	 */
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	/**
+	 * @param photoUrl the photoUrl to set
+	 */
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
+
+	/**
+	 * @return the loginType
+	 */
+	public String getLoginType() {
+		return loginType;
+	}
+
+	/**
+	 * @param loginType the loginType to set
+	 */
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
 	}
 
 }

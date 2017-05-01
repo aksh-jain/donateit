@@ -4,6 +4,7 @@
 package com.techmavericks.donateit.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * @author Akshay Jain
@@ -15,9 +16,17 @@ public class DonorDetails implements Serializable {
 
 	private Long donorId;
 
-	private String donorName;
-
-	private Address donorAddress;
+	private String name;
+	
+	private String email;
+	
+	private String gender;
+	
+	private LocalDate dateOfBirth;
+	
+	private String photoUrl;
+	
+	private String loginType;
 
 	/**
 	 * @return the donorId
@@ -27,41 +36,96 @@ public class DonorDetails implements Serializable {
 	}
 
 	/**
-	 * @param donorId
-	 *            the donorId to set
+	 * @param donorId the donorId to set
 	 */
 	public void setDonorId(Long donorId) {
 		this.donorId = donorId;
 	}
 
 	/**
-	 * @return the donorName
+	 * @return the name
 	 */
-	public String getDonorName() {
-		return donorName;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param donorName
-	 *            the donorName to set
+	 * @param name the name to set
 	 */
-	public void setDonorName(String donorName) {
-		this.donorName = donorName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * @return the donorAddress
+	 * @return the email
 	 */
-	public Address getDonorAddress() {
-		return donorAddress;
+	public String getEmail() {
+		return email;
 	}
 
 	/**
-	 * @param donorAddress
-	 *            the donorAddress to set
+	 * @param email the email to set
 	 */
-	public void setDonorAddress(Address donorAddress) {
-		this.donorAddress = donorAddress;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the dateOfBirth
+	 */
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	/**
+	 * @param dateOfBirth the dateOfBirth to set
+	 */
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	/**
+	 * @return the photoUrl
+	 */
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	/**
+	 * @param photoUrl the photoUrl to set
+	 */
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
+
+	/**
+	 * @return the loginType
+	 */
+	public String getLoginType() {
+		return loginType;
+	}
+
+	/**
+	 * @param loginType the loginType to set
+	 */
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
+	}
+	
+	
 
 }

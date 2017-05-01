@@ -13,30 +13,11 @@ public class Address implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String email;
+	 private Long mobile;
 
-	private Long mobile;
+	 private String addr1;
 
-	private String addr1;
-
-	private String addr2;
-
-	private String addr3;
-
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-
-	/**
-	 * @param email
-	 *            the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	 private String landMark;
 
 	/**
 	 * @return the mobile
@@ -46,8 +27,7 @@ public class Address implements Serializable {
 	}
 
 	/**
-	 * @param mobile
-	 *            the mobile to set
+	 * @param mobile the mobile to set
 	 */
 	public void setMobile(Long mobile) {
 		this.mobile = mobile;
@@ -61,41 +41,25 @@ public class Address implements Serializable {
 	}
 
 	/**
-	 * @param addr1
-	 *            the addr1 to set
+	 * @param addr1 the addr1 to set
 	 */
 	public void setAddr1(String addr1) {
 		this.addr1 = addr1;
 	}
 
 	/**
-	 * @return the addr2
+	 * @return the landMark
 	 */
-	public String getAddr2() {
-		return addr2;
+	public String getLandMark() {
+		return landMark;
 	}
 
 	/**
-	 * @param addr2
-	 *            the addr2 to set
+	 * @param landMark the landMark to set
 	 */
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
+	public void setLandMark(String landMark) {
+		this.landMark = landMark;
 	}
-
-	/**
-	 * @return the addr3
-	 */
-	public String getAddr3() {
-		return addr3;
-	}
-
-	/**
-	 * @param addr3
-	 *            the addr3 to set
-	 */
-	public void setAddr3(String addr3) {
-		this.addr3 = addr3;
-	}
-
+	 
+	 
 }

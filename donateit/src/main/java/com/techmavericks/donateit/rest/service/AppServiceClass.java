@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techmavericks.donateit.core.IAppManager;
 import com.techmavericks.donateit.rest.request.UserDetails;
 import com.techmavericks.donateit.rest.response.HelloWorld;
+import com.techmavericks.donateit.rest.response.HomePageResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,6 +34,9 @@ public class AppServiceClass {
 
 	public static final Logger log = LoggerFactory.getLogger(AppServiceClass.class);
 
+	@Resource(name = "appManager")
+	IAppManager appManager;
+	
 	@Resource(name = "objectMapper")
 	ObjectMapper objectMapper;
 
@@ -53,9 +58,26 @@ public class AppServiceClass {
 
 		HelloWorld hello = new HelloWorld();
 
-		hello.setName(user.getName() + " " + user.getSurname());
+		hello.setName(user.getName());
 
 		return new ResponseEntity<>(objectMapper.writeValueAsString(hello), HttpStatus.OK);
 
 	}
+	
+	
+	@RequestMapping(value = "/signup/{userType}", method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<String> signUpGoogle(@PathVariable("userType") @NotNull String userType, @RequestBody UserDetails user)
+			throws JsonProcessingException {
+		
+		HomePageResponse homePageResponse = appManager.signUpGoogle(userType, user);
+		
+		HttpStatus httpStatus = HttpStatus.OK;
+		if(homePageResponse.getIsCreated() == true){
+			httpStatus = HttpStatus.CREATED;
+		}
+
+		return new ResponseEntity<>(objectMapper.writeValueAsString(homePageResponse), httpStatus);
+		
+	}
+
 }

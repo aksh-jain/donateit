@@ -16,50 +16,101 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class UserDetails {
 
 	private String name;
-	//private Long age;
-	private String surname;
-	private String email;
-	private Long mobile;
+	
+	private String emailId;
+	
+	private Long mobileNo;
+	
+	private String gender;
+	
+//	@JsonDeserialize(using = LocalDateDeserializer.class)  
+//	@JsonSerialize(using = LocalDateSerializer.class)  
+//	private LocalDate dateOfBirth;
+	
+	private String photoUrl;
 
-
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-//	public Long getAge() {
-//		return age;
+	/**
+	 * @return the emailId
+	 */
+	public String getEmailId() {
+		return emailId;
+	}
+
+	/**
+	 * @param emailId the emailId to set
+	 */
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	/**
+	 * @return the mobileNo
+	 */
+	public Long getMobileNo() {
+		return mobileNo;
+	}
+
+	/**
+	 * @param mobileNo the mobileNo to set
+	 */
+	public void setMobileNo(Long mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+//	/**
+//	 * @return the dateOfBirth
+//	 */
+//	public LocalDate getDateOfBirth() {
+//		return dateOfBirth;
 //	}
 //
-//	public void setAge(Long age) {
-//		this.age = age;
+//	/**
+//	 * @param dateOfBirth the dateOfBirth to set
+//	 */
+//	public void setDateOfBirth(LocalDate dateOfBirth) {
+//		this.dateOfBirth = dateOfBirth;
 //	}
 
-	public String getSurname() {
-		return surname;
+	/**
+	 * @return the photoUrl
+	 */
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	/**
+	 * @param photoUrl the photoUrl to set
+	 */
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
-
-	 public String getEmail() {
-	 return email;
-	 }
 	
-	 public void setEmail(String email) {
-	 this.email = email;
-	 }
-
-	public Long getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(Long mobile) {
-		this.mobile = mobile;
-	}
-
 }
