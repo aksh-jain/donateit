@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserDetails {
+public class UserDetailsRequest {
 
 	private String name;
 	

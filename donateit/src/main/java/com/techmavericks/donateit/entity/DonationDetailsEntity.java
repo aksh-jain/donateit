@@ -4,7 +4,10 @@
 package com.techmavericks.donateit.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -22,39 +25,42 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "DN_ORDER_DTL")
-public class OrderDetailsEntity implements Serializable{
+@Table(name = "DN_DONATION_DTL")
+public class DonationDetailsEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ORDER_ID", unique = true, nullable = false, insertable = false, updatable = false)
-	private Long orderId;
+	@Column(name = "DONATION_ID", unique = true, nullable = false, insertable = false, updatable = false)
+	private Long donationId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "DONOR_ID", referencedColumnName = "DONOR_ID", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "DONOR_ID", referencedColumnName = "DONOR_ID", nullable = false, updatable = false)
 	private DonorDetailsEntity donorDetails;
 	
-	@Column(name = "DONOR_ID", nullable = false)
+	@Column(name = "PERSON_COUNT", nullable = false)
 	private Integer personCount;
 	
-	//TODO column overwrite
+	@Column(name = "DONATION_TIME_STAMP", nullable = true)
+	private LocalDateTime donationTimeStamp;
+	
+	@AttributeOverrides({@AttributeOverride(name = "mobile", column =  @Column(name = "DONOR_MOBILE_NO")), @AttributeOverride(name = "addr1", column =  @Column(name = "DONOR_ADDR")), @AttributeOverride(name = "landMark", column =  @Column(name = "DONOR_ADDR_LANDMARK")), @AttributeOverride(name = "city", column =  @Column(name = "DONOR_CITY")), @AttributeOverride(name = "state", column =  @Column(name = "DONOR_STATE"))})
 	@Embedded
 	private AddressEntity address;
 
 	/**
-	 * @return the orderId
+	 * @return the donationId
 	 */
-	public Long getOrderId() {
-		return orderId;
+	public Long getDonationId() {
+		return donationId;
 	}
 
 	/**
-	 * @param orderId the orderId to set
+	 * @param donationId the donationId to set
 	 */
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
+	public void setDonationId(Long donationId) {
+		this.donationId = donationId;
 	}
 
 	/**
@@ -83,6 +89,20 @@ public class OrderDetailsEntity implements Serializable{
 	 */
 	public void setPersonCount(Integer personCount) {
 		this.personCount = personCount;
+	}
+
+	/**
+	 * @return the donationTimeStamp
+	 */
+	public LocalDateTime getDonationTimeStamp() {
+		return donationTimeStamp;
+	}
+
+	/**
+	 * @param donationTimeStamp the donationTimeStamp to set
+	 */
+	public void setDonationTimeStamp(LocalDateTime donationTimeStamp) {
+		this.donationTimeStamp = donationTimeStamp;
 	}
 
 	/**

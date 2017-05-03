@@ -12,8 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.techmavericks.donateit.dao.IAppRepository;
 import com.techmavericks.donateit.dao.jpa.AbstractDao;
+import com.techmavericks.donateit.domain.DonationDetails;
+import com.techmavericks.donateit.entity.DonationDetailsEntity;
 import com.techmavericks.donateit.entity.DonorDetailsEntity;
-import com.techmavericks.donateit.rest.request.UserDetails;
+import com.techmavericks.donateit.rest.request.UserDetailsRequest;
+import com.techmavericks.donateit.rest.response.DonationResponse;
 import com.techmavericks.donateit.rest.response.HomePageResponse;
 import com.techmavericks.donateit.rest.service.AppServiceClass;
 
@@ -70,7 +73,7 @@ import com.techmavericks.donateit.rest.service.AppServiceClass;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public Long insertUserDetails(UserDetails user , String userType) {
+	public Long insertUserDetails(UserDetailsRequest user , String userType) {
 		
 		DonorDetailsEntity donorDetailsEntity = mapper.map(user, DonorDetailsEntity.class);
 		donorDetailsEntity.setLoginType(userType);
@@ -102,6 +105,19 @@ import com.techmavericks.donateit.rest.service.AppServiceClass;
 			return null;
 		}
 	
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public DonationResponse donateItem(DonationDetails donationDetails, Long donorId) {
+		
+		DonationDetailsEntity donationDetailsEntity = mapper.map(donationDetails, DonationDetailsEntity.class);
+		
+		getEm().persist(donationDetailsEntity);
+		getEm().flush();
+		
+		return mapper.map(donationDetailsEntity, DonationResponse.class);
+		
 	}
 
  }

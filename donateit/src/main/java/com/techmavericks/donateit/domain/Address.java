@@ -18,6 +18,10 @@ public class Address implements Serializable {
 	 private String addr1;
 
 	 private String landMark;
+	 
+	 private String city;
+	 
+	 private String state;
 
 	/**
 	 * @return the mobile
@@ -60,6 +64,32 @@ public class Address implements Serializable {
 	public void setLandMark(String landMark) {
 		this.landMark = landMark;
 	}
-	 
-	 
+
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
+	}
 }

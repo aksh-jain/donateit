@@ -20,6 +20,8 @@ public class DonorDetails implements Serializable {
 	
 	private String email;
 	
+	private Long mobileNo;
+	
 	private String gender;
 	
 	private LocalDate dateOfBirth;
@@ -68,6 +70,20 @@ public class DonorDetails implements Serializable {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	/**
+	 * @return the mobileNo
+	 */
+	public Long getMobileNo() {
+		return mobileNo;
+	}
+
+	/**
+	 * @param mobileNo the mobileNo to set
+	 */
+	public void setMobileNo(Long mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 
 	/**
@@ -125,7 +141,5 @@ public class DonorDetails implements Serializable {
 	public void setLoginType(String loginType) {
 		this.loginType = loginType;
 	}
-	
-	
 
 }

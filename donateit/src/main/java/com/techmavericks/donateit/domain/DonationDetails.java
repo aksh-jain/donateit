@@ -1,38 +1,38 @@
-/**
- * 
- */
 package com.techmavericks.donateit.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @author Ashish
  *
  */
-public class OrderDetails implements Serializable {
+public class DonationDetails implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Long orderId;
+	private Long donationId;
 	
 	private DonorDetails donorDetails;
 	
 	private Integer personCount;
+	
+	private LocalDateTime donationTimeStamp;
 
 	private Address address;
 
 	/**
-	 * @return the orderId
+	 * @return the donationId
 	 */
-	public Long getOrderId() {
-		return orderId;
+	public Long getDonationId() {
+		return donationId;
 	}
 
 	/**
-	 * @param orderId the orderId to set
+	 * @param donationId the donationId to set
 	 */
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
+	public void setDonationId(Long donationId) {
+		this.donationId = donationId;
 	}
 
 	/**
@@ -64,6 +64,20 @@ public class OrderDetails implements Serializable {
 	}
 
 	/**
+	 * @return the donationTimeStamp
+	 */
+	public LocalDateTime getDonationTimeStamp() {
+		return donationTimeStamp;
+	}
+
+	/**
+	 * @param donationTimeStamp the donationTimeStamp to set
+	 */
+	public void setDonationTimeStamp(LocalDateTime donationTimeStamp) {
+		this.donationTimeStamp = donationTimeStamp;
+	}
+
+	/**
 	 * @return the address
 	 */
 	public Address getAddress() {
@@ -76,5 +90,4 @@ public class OrderDetails implements Serializable {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
 }

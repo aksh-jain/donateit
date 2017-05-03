@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.techmavericks.donateit.rest.service;
 
 import javax.annotation.Resource;
@@ -16,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techmavericks.donateit.core.IAppManager;
-import com.techmavericks.donateit.rest.request.UserDetails;
-import com.techmavericks.donateit.rest.response.HelloWorld;
-import com.techmavericks.donateit.rest.response.HomePageResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.techmavericks.donateit.core.IAppManager;
+import com.techmavericks.donateit.rest.request.DonationDetailsRequest;
+import com.techmavericks.donateit.rest.request.UserDetailsRequest;
+import com.techmavericks.donateit.rest.response.DonationResponse;
+import com.techmavericks.donateit.rest.response.HomePageResponse;
 
 /**
  * @author Akshay Jain
@@ -40,33 +38,9 @@ public class AppServiceClass {
 	@Resource(name = "objectMapper")
 	ObjectMapper objectMapper;
 
-	@RequestMapping(value = "/hello/{name}", method = RequestMethod.GET, consumes = "application/json")
-	public ResponseEntity<String> getMessage(@PathVariable("name") @NotNull String name)
-			throws JsonProcessingException {
-
-		HelloWorld hello = new HelloWorld();
-
-		hello.setName(name);
-
-		return new ResponseEntity<>(objectMapper.writeValueAsString(hello), HttpStatus.OK);
-
-	}
-
-	@RequestMapping(value = "/body/{name}", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<String> getjson(@PathVariable("name") @NotNull String name, @RequestBody UserDetails user)
-			throws JsonProcessingException {
-
-		HelloWorld hello = new HelloWorld();
-
-		hello.setName(user.getName());
-
-		return new ResponseEntity<>(objectMapper.writeValueAsString(hello), HttpStatus.OK);
-
-	}
-	
 	
 	@RequestMapping(value = "/signup/{userType}", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<String> signUpGoogle(@PathVariable("userType") @NotNull String userType, @RequestBody UserDetails user)
+	public ResponseEntity<String> signUpGoogle(@PathVariable("userType") @NotNull String userType, @RequestBody UserDetailsRequest user)
 			throws JsonProcessingException {
 		
 		HomePageResponse homePageResponse = appManager.signUpGoogle(userType, user);
@@ -77,6 +51,15 @@ public class AppServiceClass {
 		}
 
 		return new ResponseEntity<>(objectMapper.writeValueAsString(homePageResponse), httpStatus);
+	}
+	
+	@RequestMapping(value = "/donate/item/{donorId}", method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<String> donateItem(@PathVariable("donorId") @NotNull Long donorId, @RequestBody DonationDetailsRequest donationRequest)
+			throws JsonProcessingException{
+		
+		DonationResponse donationResponse = appManager.donateItem(donationRequest, donorId);
+		
+		return new ResponseEntity<>(objectMapper.writeValueAsString(donationResponse), HttpStatus.OK);
 		
 	}
 

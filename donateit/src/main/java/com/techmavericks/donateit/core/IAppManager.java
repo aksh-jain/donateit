@@ -1,6 +1,8 @@
 package com.techmavericks.donateit.core;
 
-import com.techmavericks.donateit.rest.request.UserDetails;
+import com.techmavericks.donateit.rest.request.DonationDetailsRequest;
+import com.techmavericks.donateit.rest.request.UserDetailsRequest;
+import com.techmavericks.donateit.rest.response.DonationResponse;
 import com.techmavericks.donateit.rest.response.HomePageResponse;
 
 /**
@@ -9,7 +11,9 @@ import com.techmavericks.donateit.rest.response.HomePageResponse;
  */
 public interface IAppManager {
 
-	HomePageResponse signUpGoogle(String userType, UserDetails user);
+	HomePageResponse signUpGoogle(String userType, UserDetailsRequest user);
+
+	DonationResponse donateItem(DonationDetailsRequest donationRequest, Long donorId);
 
 
 }
